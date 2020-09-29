@@ -39,30 +39,30 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 200);
+  createCanvas(windowWidth, windowHeight);
 
-  trex = createSprite(50, 160, 20, 50);
+  trex = createSprite(50,height-95,20,50);
   trex.addAnimation("running", trex_running);
   trex.addAnimation("collided", trex_collided);
   trex.scale = 0.5;
 
-  var colored_ground = createSprite(300, 205, 600, 50);
+  var colored_ground = createSprite(width/2,height-85,width,20);
   colored_ground.addImage(colored_groundImg);
   ground = createSprite(200, 182, 400, 20);
   ground.addImage("ground", groundImage);
   ground.x = ground.width / 2;
 
-  gameOver = createSprite(300, 100);
+  gameOver = createSprite(width/2,height/2-50);
   gameOver.addImage(gameOverImg);
 
-  restart = createSprite(300, 140);
+  restart = createSprite(width/2,height/2);
   restart.addImage(restartImg);
 
 
   gameOver.scale = 0.5;
   restart.scale = 0.5;
 
-  invisibleGround = createSprite(200, 190, 400, 10);
+  invisibleGround = createSprite(width/2,height-70,width,10);
   invisibleGround.visible = false;
 
   //create Obstacle and Cloud Groups
@@ -105,9 +105,8 @@ function draw() {
     if (ground.x < 0) {
       ground.x = ground.width / 2;
     }
-    console.log(trex.y);
     //jump when the space key is pressed
-    if (keyDown("space") && trex.y >= 160) {
+    if (keyDown("space") && trex.y >= height-120) {
       trex.velocityY = -12;
       jumpSound.play();
     }
